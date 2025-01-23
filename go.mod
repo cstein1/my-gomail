@@ -3,6 +3,7 @@ module github.com/cstein1/my-gomail
 go 1.23.1
 
 require (
+	github.com/google/uuid v1.6.0
 	golang.org/x/oauth2 v0.25.0
 	google.golang.org/api v0.216.0
 )
@@ -15,7 +16,6 @@ require (
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/google/s2a-go v0.1.8 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.54.0 // indirect

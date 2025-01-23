@@ -78,23 +78,26 @@ func saveToken(path string, token *oauth2.Token) {
 	json.NewEncoder(f).Encode(token)
 }
 
-func SendMail(from, to, subject, msg, credentialsPath string) {
+func SendMail(from, to, subject, msg, credentialsPath string) error {
 	ctx := context.Background()
 	b, err := os.ReadFile(credentialsPath)
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
+		return err
 	}
 
 	// If modifying these scopes, delete your previously saved token.json.
 	config, err := google.ConfigFromJSON(b, gmail.GmailSendScope, gmail.GmailComposeScope, gmail.GmailModifyScope)
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
+		return err
 	}
 	client := getClient(config)
 
 	srv, err := gmail.NewService(ctx, option.WithHTTPClient(client))
 	if err != nil {
 		log.Fatalf("Unable to retrieve Gmail client: %v", err)
+		return err
 	}
 
 	msgString := fmt.Sprintf("From: %s\n", from)
@@ -132,4 +135,5 @@ func SendMail(from, to, subject, msg, credentialsPath string) {
 	} else {
 		fmt.Printf("Status code: %v\n", gmsg.HTTPStatusCode)
 	}
+	return err
 }
