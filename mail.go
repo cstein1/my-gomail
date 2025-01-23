@@ -104,7 +104,7 @@ func SendMail(from, to, subject, msg, credentialsPath string) error {
 	msgString += fmt.Sprintf("To: %s\n", to)
 	msgString += fmt.Sprintf("Subject: %s\n", subject)
 	msgString += fmt.Sprintf("Date: %s\n", time.Now())
-	msgString += fmt.Sprintf("Message-ID: %s\n", uuid.NewString())
+	msgString += fmt.Sprintf("Message-ID: %s\r\n\r\n", uuid.NewString())
 	msgString += fmt.Sprint(msg)
 
 	var message *gmail.Message = &gmail.Message{
