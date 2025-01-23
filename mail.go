@@ -109,31 +109,12 @@ func SendMail(from, to, subject, msg, credentialsPath string) error {
 
 	var message *gmail.Message = &gmail.Message{
 		Raw: base64.URLEncoding.EncodeToString([]byte(msgString)),
-		Payload: &gmail.MessagePart{
-			Body: &gmail.MessagePartBody{
-				Data: base64.URLEncoding.EncodeToString([]byte(msgString)),
-			},
-			Headers: []*gmail.MessagePartHeader{
-				{
-					Name:  "To",
-					Value: to,
-				},
-				{
-					Name:  "From",
-					Value: from,
-				},
-				{
-					Name:  "Subject",
-					Value: subject,
-				},
-			},
-		},
 	}
 	gmsg, err := srv.Users.Messages.Send("me", message).Do()
 	if err != nil {
-		fmt.Printf("Err: %v\n", err.Error())
+		log.Printf("Err: %v\n", err.Error())
 	} else {
-		fmt.Printf("Status code: %v\n", gmsg.HTTPStatusCode)
+		log.Printf("Status code: %v\n", gmsg.HTTPStatusCode)
 	}
 	return err
 }
