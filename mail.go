@@ -100,10 +100,10 @@ func SendMail(from, to, subject, msg, credentialsPath string) error {
 		return err
 	}
 
-	msgString := fmt.Sprintf("From: %s\n", from)
-	msgString += fmt.Sprintf("To: %s\n", to)
-	msgString += fmt.Sprintf("Subject: %s\n", subject)
-	msgString += fmt.Sprintf("Date: %s\n", time.Now())
+	msgString := fmt.Sprintf("From: %s\r\n", from)
+	msgString += fmt.Sprintf("To: %s\r\n", to)
+	msgString += fmt.Sprintf("Subject: %s\r\n", subject)
+	msgString += fmt.Sprintf("Date: %s\r\n", time.Now())
 	msgString += fmt.Sprintf("Message-ID: %s\r\n\r\n", uuid.NewString())
 	msgString += fmt.Sprint(msg)
 
